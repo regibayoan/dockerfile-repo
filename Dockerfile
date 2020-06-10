@@ -1,7 +1,9 @@
-FROM nginx:latest
+FROM ubuntu:14.04
 
-ADD https://github.com/regibayoan/dockerfile-repo/blob/master/index.html /usr/share/nginx/html/
+RUN apt-get update
+RUN apt-get install -y nginx
 
-RUN chmod +r /usr/share/nginx/html/index.html
+ADD index.html /usr/share/nginx/html/index.html
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off";]
+EXPOSE 80
